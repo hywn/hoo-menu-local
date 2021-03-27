@@ -4,8 +4,10 @@ import { parse } from 'https://deno.land/std@0.91.0/flags/mod.ts'
 import get_on from './newcomb-ohill-test.js'
 import get_runk from './runk.js'
 
-const get_all = async () =>
-	[...await get_on(), await get_runk(new Date())]
+const get_all = async () => ({
+	  last_updated: Date.now()
+	, data: [...await get_on(), await get_runk(new Date())]
+})
 
 console.log('getting initial data...')
 let data = await get_all()
@@ -14,7 +16,7 @@ setInterval(async () => {
 	console.log('fetching new data...')
 	data = await get_all()
 	console.log('done')
-}, 1000 * 30)
+}, 1000 * 60 * 60 * 2) // 2 hours
 
 const { port } = parse(Deno.args)
 if (port == null) {
