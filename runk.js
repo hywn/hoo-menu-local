@@ -25,7 +25,7 @@ const get_runk = async date => {
 
 	//const foodfood = food.map((fname, i) => ({"food": fname.food, "allergen": allergens[i]}))
 
-	const foodfood = food_name.map((fname, i) => ({"name": fname, "allergen": allergen_parsed[i]}))
+	const foodfood = food_name.map((fname, i) => ({"name": fname, "allergens": allergen_parsed[i]}))
 
 
 		return foodfood
