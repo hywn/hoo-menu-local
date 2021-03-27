@@ -5,13 +5,16 @@ import get_on from './newcomb-ohill-test.js'
 import get_runk from './runk.js'
 
 const get_all = async () =>
-	[await get_runk(new Date())]
+	[...await get_on(), await get_runk(new Date())]
 
+console.log('getting initial data...')
 let data = await get_all()
+console.log('OK')
 setInterval(async () => {
-	console.log('heybro')
+	console.log('fetching new data...')
 	data = await get_all()
-}, 1000 * 10)
+	console.log('done')
+}, 1000 * 30)
 
 const { port } = parse(Deno.args)
 if (port == null) {
