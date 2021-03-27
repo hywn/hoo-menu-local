@@ -1,0 +1,18 @@
+// https://prod.liveshare.vsengsaas.visualstudio.com/join?7CA726D10CD040B54E9F9B27EA772959EE9B
+
+cjiojoijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijjijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijiji
+a
+jijijssssssssssafasfsfsfsfsfsfssfsfsfssssssss
+jijija
+jijijaa
+jijij jijijijijijijijiji
+hihihihihihihiaaaa
+holy cow
+discord is doing
+discord.
+
+console.log("im fine thank you and you?")
+
+hiii this is viktor
+
+console.log("hello everyone!")

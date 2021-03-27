@@ -1,0 +1,91 @@
+<div>
+    <h1>
+        Hoo Menu
+    </h1>
+    <div class="dropdown">
+        <button class="dropbtn">Dining Halls</button>
+        <div class="dropdown-content">
+          <a class="runkbtn" onClick="hello('runk')">Runk</a>
+          <a class="ohillbtn">O'Hill</a>
+          <a class="newcombbtn">Newcomb</a>
+        </div>
+      </div>
+    <ol id='rbreak'>
+    </ol>
+</div>
+
+<script>
+    const example = [
+	{ name: 'runk'
+	, meals:
+		[ { name: 'my brunch', food: [{ name: 'spaghetti', allergens: ['wheat'] }] }
+		, { name: 'my brunch', food: [{ name: 'taco', allergens: ['corn'] }] }
+        , { name: 'dinn', food: [{ name: 'bread', allergens: ['wheat'] }] }
+		]
+	},
+	{ name: 'ohill'
+	, meals:
+		[ { name: 'my brunch', food: [{ name: 'hamburger', allergens: ['wheat'] }] }
+		, { name: 'dinner', food: [{ name: 'pizza', allergens: ['wheat', 'dairy'] }] }
+		]
+	}
+]
+    // Get Hall Name
+    const hall = []
+    example.map((each) => {
+        hall.push(each.name)
+    })
+    console.log(hall) // runk, ohill
+
+    // Get Meals Under Each Hall Name
+    // Runk
+    const runk = []
+    example.forEach( (obj) => {
+        if (obj.name == 'runk'){
+            runk.push(obj)
+        }
+    })
+    console.log(runk[0].name) // runk
+    // Runk Meals
+    const runkMeals = []
+    runk.forEach((obj) => {
+        runkMeals.push(obj.meals)
+    })
+
+    //Runk Brekfast
+    const runkBreakfast = []
+    runkMeals.forEach( (each) => {
+        each.forEach( (every) => {
+            if (every.name == "my brunch"){
+                runkBreakfast.push(every.food)
+            }
+        })
+    })
+    console.log(runkBreakfast) // [Array(1)] within Obj;
+
+    const rb = []
+    runkBreakfast.forEach( (each) => {
+        each.forEach( (every) => {
+            rb.push(every)
+        })
+
+    })
+    console.log(rb) // {spaghetti, allergens: Array(1)}, {taco, allergens: Array(1)}
+
+    // Let's Add Runk Breakfast Items to HTML List Now
+    var rblist = document.getElementById('rbreak')
+    rb.forEach( (item) => {
+        var liNode = document.createElement('li')
+        var textNode = document.createTextNode(item.name)
+        liNode.appendChild(textNode)
+        rblist.appendChild(liNode)
+    })
+
+    // Filter by Location
+    function hello(location){
+
+        console.log(location) // if runk was chosen, prints 'runk'
+    }
+
+
+</script>
