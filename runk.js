@@ -1,5 +1,19 @@
 import { DOMParser } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts'
 
+const rename = Object.fromEntries(Object.entries(
+	{ egg: 'eggs'
+	, soy: 'soy'
+	, wheat: 'wheat'
+	, milk: 'milk'
+	, fish: 'fish'
+	, shellfish: 'shellfish'
+	, peanut: 'peanuts'
+	, tree_nuts: 'treenuts'
+	}
+).map(([k, v]) => [`allergen-has_${k}`, v]))
+
+const regularise_allergen = tag => rename[tag] || 'error'
+
 const get_runk = async date => {
 	const url = `https://dining.virginia.edu/locations/runk-dining-hall/?date=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
 	const text = await fetch(url).then(r => r.text())
@@ -25,7 +39,7 @@ const get_runk = async date => {
 
 	//const foodfood = food.map((fname, i) => ({"food": fname.food, "allergen": allergens[i]}))
 
-	const foodfood = food_name.map((fname, i) => ({"name": fname, "allergens": allergen_parsed[i]}))
+	const foodfood = food_name.map((fname, i) => ({"name": fname, "allergens": allergen_parsed[i].map(regularise_allergen)}))
 
 
 		return foodfood
@@ -40,6 +54,6 @@ const get_runk = async date => {
 	return { name: 'runk', meals: meals(mealNames, mealDivs) }
 }
 
-//console.log(await get_runk(new Date()))
+//console.log(new Set((await get_runk(new Date())).meals.map(h => h.food).flat().map(f => f.allergens).flat()))
 
 export default get_runk
