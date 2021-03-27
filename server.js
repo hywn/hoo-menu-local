@@ -28,5 +28,8 @@ const server = serve({ port })
 
 console.log(`now serving on port ${port}`)
 
+// should specify but
+const headers = new Headers({ 'Access-Control-Allow-Origin': '*' })
+
 for await (const request of server)
-	request.respond({ body: JSON.stringify(data) })
+	request.respond({ headers, body: JSON.stringify(data) })
