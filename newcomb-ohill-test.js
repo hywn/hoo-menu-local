@@ -3,7 +3,7 @@ import { DOMParser } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts'
 const my_DP = new DOMParser()
 const toDOM = text => my_DP.parseFromString(text, 'text/html')
 
-const my_fetch = url => fetch('https://www.cs.virginia.edu/~jh7qbe/test.php?url=' + encodeURIComponent(url))
+const my_fetch = url => fetch('hms.virginia.edu/~jh7qbe/test.php?url=' + encodeURIComponent(url))
 
 const ohill_dateuri = date => encodeURIComponent(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`)
 

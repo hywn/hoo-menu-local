@@ -1,17 +1,50 @@
 <!-- hi -->
 
 <body>
+
+	<div id=title></div>
+    <div id=allergens></div>
+	<div id=columns></div>
+</body>
+
 <!--
+	<div id=cool title></div>
+	<div id=the allergy selection></div>
+<div id=stuff></div>
 1. when got data for first time, generat the three columns which contains
 	dropdown (which doesnt change past initial loading)
 	meal display (which will change due to filter)
 -->
-</body>
 
-<script>
-const data = [{"name":"newcomb","meals":[{"name":"Brunch","food":[{"name":"Chile Verde Chicken Drumstick","allergens":[]},{"name":"Biscuits & Sausage Gravy","allergens":["eggs","milk","soy","wheat"]},{"name":"Old Fashioned Oatmeal","allergens":[]},{"name":"Sausage Frittata","allergens":["eggs","milk"]},{"name":"Scrambled Eggs","allergens":["eggs","milk"]},{"name":"Hash Brown Potato Patty","allergens":[]},{"name":"Bacon","allergens":[]},{"name":"Turkey Sausage Link","allergens":[]},{"name":"Cilantro-Lime Brown Rice","allergens":[]},{"name":"Red Beans","allergens":["milk","soy"]},{"name":"Fried Egg","allergens":["eggs"]},{"name":"Bacon Pieces","allergens":[]},{"name":"Diced Turkey Ham","allergens":[]},{"name":"Egg Whites","allergens":["eggs"]},{"name":"Eggs","allergens":["eggs","milk"]},{"name":"Shredded Cheddar Cheese","allergens":["milk"]},{"name":"Chopped Fresh Spinach","allergens":[]},{"name":"Diced Onions","allergens":[]},{"name":"Diced Tomatoes","allergens":[]},{"name":"Sauteed Red & Green Peppers","allergens":[]},{"name":"Sliced Mushrooms","allergens":[]},{"name":"Grilled BBQ Pork Chops","allergens":[]},{"name":"Confetti Brown Rice","allergens":[]},{"name":"Roasted Autumn Vegetables","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Pancakes","allergens":["eggs","milk"]},{"name":"Pancake Syrup","allergens":[]},{"name":"Vegan Chicken & Kale Penne","allergens":[]},{"name":"Cumin-Spiced Roasted Butternut Squash","allergens":[]},{"name":"Sesame Spinach","allergens":[]},{"name":"Farro & Roasted Carrot Salad","allergens":[]},{"name":"Tomato Chickpea Salad","allergens":[]}]},{"name":"Dinner","food":[{"name":"Homestyle Spaghetti & Meatballs","allergens":["milk","soy","wheat"]},{"name":"Three Cheese Penne","allergens":[]},{"name":"Grilled Italian Vegetables","allergens":[]},{"name":"Seasoned Spinach","allergens":["milk","soy"]},{"name":"Minestrone Soup","allergens":["milk","wheat"]},{"name":"Vegetable Soup with Brown Rice","allergens":[]},{"name":"Garlic Herb Breadstick","allergens":["eggs","milk","soy","wheat"]},{"name":"Cheeseburger on White Roll","allergens":[]},{"name":"Gardenburger Black Bean Burger","allergens":[]},{"name":"Turkey Burger on White Roll","allergens":[]},{"name":"Crispy Chicken Sandwich","allergens":[]},{"name":"Chicken Cheesesteak Wrap","allergens":["milk","wheat"]},{"name":"Crispy Shoestring French Fries","allergens":[]},{"name":"Green Leaf Lettuce","allergens":[]},{"name":"Sliced Onions","allergens":[]},{"name":"Sliced Tomatoes","allergens":[]},{"name":"Dill Pickle Slices","allergens":[]},{"name":"Taco Beef","allergens":[]},{"name":"Charro Beans","allergens":[]},{"name":"Spanish Rice","allergens":[]},{"name":"Taco-Seasoned Grilled Chicken","allergens":[]},{"name":"Crunchy Taco Shell","allergens":[]},{"name":"Black Beans","allergens":[]},{"name":"Diced Mixed Bell Peppers","allergens":[]},{"name":"Diced Onions","allergens":[]},{"name":"Diced Tomatoes","allergens":[]},{"name":"Iceberg Lettuce","allergens":[]},{"name":"Jalapeno Peppers","allergens":[]},{"name":"Chunky Salsa","allergens":[]},{"name":"Guacamole","allergens":[]},{"name":"Salsa Verde","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Margherita Pizza","allergens":[]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Caesar Salad","allergens":[]},{"name":"Chicken Shawarma Platter","allergens":[]},{"name":"Kale & Bulgur Tabbouleh","allergens":["wheat"]},{"name":"Balsamic Roasted Vegetables","allergens":[]},{"name":"Vegan Chicken & Kale Penne","allergens":[]},{"name":"Cumin-Spiced Roasted Butternut Squash","allergens":[]},{"name":"Sesame Spinach","allergens":[]},{"name":"Farro & Roasted Carrot Salad","allergens":[]},{"name":"Tomato Chickpea Salad","allergens":[]}]}]},{"name":"ohill","meals":[{"name":"Brunch","food":[{"name":"Hard-Cooked Egg","allergens":["eggs"]},{"name":"Grits","allergens":[]},{"name":"Old Fashioned Oatmeal","allergens":[]},{"name":"Fried Egg","allergens":["eggs"]},{"name":"Scrambled Eggs","allergens":[]},{"name":"Roasted Red Potatoes","allergens":[]},{"name":"Pork Sausage Patty","allergens":[]},{"name":"Turkey Bacon","allergens":[]},{"name":"Southern Biscuit","allergens":["milk","wheat"]},{"name":"Sausage Gravy","allergens":["milk","soy","wheat"]},{"name":"Seasoned Roast Beef","allergens":[]},{"name":"Spanish Rice","allergens":[]},{"name":"Seasoned Fresh Zucchini","allergens":[]},{"name":"Bacon Breakfast Pizza","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Marinara Sauce","allergens":[]},{"name":"Buttermilk Pancakes","allergens":["eggs","milk","soy","wheat"]},{"name":"Gardenburger Black Bean Burger","allergens":["soy","wheat"]},{"name":"Crispy Chicken Sandwich","allergens":["wheat"]},{"name":"Crunchy Corn Dogs","allergens":["eggs","milk","soy","wheat"]},{"name":"Crispy Shoestring French Fries","allergens":[]},{"name":"American Cheese","allergens":["milk"]},{"name":"Cheddar Cheese","allergens":["milk"]},{"name":"Green Leaf Lettuce","allergens":[]},{"name":"Sliced Onions","allergens":[]},{"name":"Sliced Tomatoes","allergens":[]},{"name":"Dill Pickle Slices","allergens":[]},{"name":"Bacon Pieces","allergens":[]},{"name":"Deli Ham","allergens":[]},{"name":"Egg Whites","allergens":["eggs"]},{"name":"Eggs","allergens":[]},{"name":"Shredded Cheddar Cheese","allergens":["milk"]},{"name":"Baby Spinach","allergens":[]},{"name":"Diced Tomatoes","allergens":[]},{"name":"Sauteed Onions","allergens":[]},{"name":"Sauteed Red & Green Peppers","allergens":[]},{"name":"Sliced Mushrooms","allergens":[]},{"name":"Cilantro-Lime Barley","allergens":[]},{"name":"Red Beans","allergens":["milk","soy"]},{"name":"Orange Spiced Carrots","allergens":[]},{"name":"Zucchini & Yellow Squash Saute","allergens":[]},{"name":"Seasoned Steamed Green Beans","allergens":[]}]},{"name":"Lunch","food":[{"name":"Vegetable Bean Soup","allergens":[]},{"name":"Nonfat Greek Yogurt","allergens":[]},{"name":"Nonfat Strawberry Yogurt","allergens":[]},{"name":"Nonfat Vanilla Yogurt","allergens":[]},{"name":"Granola","allergens":["soy"]},{"name":"Honey Granola","allergens":["milk","soy"]},{"name":"Blueberries","allergens":[]},{"name":"Diced Mango","allergens":[]}]},{"name":"Dinner","food":[{"name":"Chicken & Shrimp Creole","allergens":["milk","shellfish","wheat"]},{"name":"Spicy Vegetable Gumbo","allergens":[]},{"name":"Seasoned Rice","allergens":[]},{"name":"Seasoned Green Peas & Mushrooms","allergens":["milk","soy"]},{"name":"Vegetable Bean Soup","allergens":[]},{"name":"Roasted Herbed Turkey Breast","allergens":[]},{"name":"Yellow Jasmine Rice","allergens":[]},{"name":"Roasted Cauliflower","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Meatball Pizza","allergens":["milk","soy","wheat"]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Pizza Sauce","allergens":[]},{"name":"Loaded Philly Tots","allergens":["eggs","fish","milk","soy"]},{"name":"Gardenburger Black Bean Burger","allergens":["soy","wheat"]},{"name":"American Cheese","allergens":["milk"]},{"name":"Cheddar Cheese","allergens":["milk"]},{"name":"Green Leaf Lettuce","allergens":[]},{"name":"Sliced Onions","allergens":[]},{"name":"Sliced Tomatoes","allergens":[]},{"name":"Dill Pickle Slices","allergens":[]},{"name":"Brown Rice","allergens":[]},{"name":"Quinoa","allergens":[]},{"name":"Southwest Black Beans","allergens":[]},{"name":"Seasoned Steamed Green Beans","allergens":[]},{"name":"Steamed Sugar Snap Peas","allergens":[]},{"name":"Nonfat Greek Yogurt","allergens":[]},{"name":"Nonfat Strawberry Yogurt","allergens":[]},{"name":"Nonfat Vanilla Yogurt","allergens":[]},{"name":"Granola","allergens":["soy"]},{"name":"Honey Granola","allergens":["milk","soy"]},{"name":"Blueberries","allergens":[]},{"name":"Diced Mango","allergens":[]}]}]}]
 
-const display_meal = ({ name, food }) => fil => food.filter(fil).map(({ name, allergens }) => `
+<script>;(async () => {
+const COLUMNS = document.querySelector('#columns')
+const TITLE = document.querySelector('#title')
+const ALLERGENS = document.querySelector('#allergens')
+//const data = [{"name":"newcomb","meals":[{"name":"Brunch","food":[{"name":"Chile Verde Chicken Drumstick","allergens":[]},{"name":"Biscuits & Sausage Gravy","allergens":["eggs","milk","soy","wheat"]},{"name":"Old Fashioned Oatmeal","allergens":[]},{"name":"Sausage Frittata","allergens":["eggs","milk"]},{"name":"Scrambled Eggs","allergens":["eggs","milk"]},{"name":"Hash Brown Potato Patty","allergens":[]},{"name":"Bacon","allergens":[]},{"name":"Turkey Sausage Link","allergens":[]},{"name":"Cilantro-Lime Brown Rice","allergens":[]},{"name":"Red Beans","allergens":["milk","soy"]},{"name":"Fried Egg","allergens":["eggs"]},{"name":"Bacon Pieces","allergens":[]},{"name":"Diced Turkey Ham","allergens":[]},{"name":"Egg Whites","allergens":["eggs"]},{"name":"Eggs","allergens":["eggs","milk"]},{"name":"Shredded Cheddar Cheese","allergens":["milk"]},{"name":"Chopped Fresh Spinach","allergens":[]},{"name":"Diced Onions","allergens":[]},{"name":"Diced Tomatoes","allergens":[]},{"name":"Sauteed Red & Green Peppers","allergens":[]},{"name":"Sliced Mushrooms","allergens":[]},{"name":"Grilled BBQ Pork Chops","allergens":[]},{"name":"Confetti Brown Rice","allergens":[]},{"name":"Roasted Autumn Vegetables","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Pancakes","allergens":["eggs","milk"]},{"name":"Pancake Syrup","allergens":[]},{"name":"Vegan Chicken & Kale Penne","allergens":[]},{"name":"Cumin-Spiced Roasted Butternut Squash","allergens":[]},{"name":"Sesame Spinach","allergens":[]},{"name":"Farro & Roasted Carrot Salad","allergens":[]},{"name":"Tomato Chickpea Salad","allergens":[]}]},{"name":"Dinner","food":[{"name":"Homestyle Spaghetti & Meatballs","allergens":["milk","soy","wheat"]},{"name":"Three Cheese Penne","allergens":[]},{"name":"Grilled Italian Vegetables","allergens":[]},{"name":"Seasoned Spinach","allergens":["milk","soy"]},{"name":"Minestrone Soup","allergens":["milk","wheat"]},{"name":"Vegetable Soup with Brown Rice","allergens":[]},{"name":"Garlic Herb Breadstick","allergens":["eggs","milk","soy","wheat"]},{"name":"Cheeseburger on White Roll","allergens":[]},{"name":"Gardenburger Black Bean Burger","allergens":[]},{"name":"Turkey Burger on White Roll","allergens":[]},{"name":"Crispy Chicken Sandwich","allergens":[]},{"name":"Chicken Cheesesteak Wrap","allergens":["milk","wheat"]},{"name":"Crispy Shoestring French Fries","allergens":[]},{"name":"Green Leaf Lettuce","allergens":[]},{"name":"Sliced Onions","allergens":[]},{"name":"Sliced Tomatoes","allergens":[]},{"name":"Dill Pickle Slices","allergens":[]},{"name":"Taco Beef","allergens":[]},{"name":"Charro Beans","allergens":[]},{"name":"Spanish Rice","allergens":[]},{"name":"Taco-Seasoned Grilled Chicken","allergens":[]},{"name":"Crunchy Taco Shell","allergens":[]},{"name":"Black Beans","allergens":[]},{"name":"Diced Mixed Bell Peppers","allergens":[]},{"name":"Diced Onions","allergens":[]},{"name":"Diced Tomatoes","allergens":[]},{"name":"Iceberg Lettuce","allergens":[]},{"name":"Jalapeno Peppers","allergens":[]},{"name":"Chunky Salsa","allergens":[]},{"name":"Guacamole","allergens":[]},{"name":"Salsa Verde","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Margherita Pizza","allergens":[]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Caesar Salad","allergens":[]},{"name":"Chicken Shawarma Platter","allergens":[]},{"name":"Kale & Bulgur Tabbouleh","allergens":["wheat"]},{"name":"Balsamic Roasted Vegetables","allergens":[]},{"name":"Vegan Chicken & Kale Penne","allergens":[]},{"name":"Cumin-Spiced Roasted Butternut Squash","allergens":[]},{"name":"Sesame Spinach","allergens":[]},{"name":"Farro & Roasted Carrot Salad","allergens":[]},{"name":"Tomato Chickpea Salad","allergens":[]}]}]},{"name":"ohill","meals":[{"name":"Brunch","food":[{"name":"Hard-Cooked Egg","allergens":["eggs"]},{"name":"Grits","allergens":[]},{"name":"Old Fashioned Oatmeal","allergens":[]},{"name":"Fried Egg","allergens":["eggs"]},{"name":"Scrambled Eggs","allergens":[]},{"name":"Roasted Red Potatoes","allergens":[]},{"name":"Pork Sausage Patty","allergens":[]},{"name":"Turkey Bacon","allergens":[]},{"name":"Southern Biscuit","allergens":["milk","wheat"]},{"name":"Sausage Gravy","allergens":["milk","soy","wheat"]},{"name":"Seasoned Roast Beef","allergens":[]},{"name":"Spanish Rice","allergens":[]},{"name":"Seasoned Fresh Zucchini","allergens":[]},{"name":"Bacon Breakfast Pizza","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Marinara Sauce","allergens":[]},{"name":"Buttermilk Pancakes","allergens":["eggs","milk","soy","wheat"]},{"name":"Gardenburger Black Bean Burger","allergens":["soy","wheat"]},{"name":"Crispy Chicken Sandwich","allergens":["wheat"]},{"name":"Crunchy Corn Dogs","allergens":["eggs","milk","soy","wheat"]},{"name":"Crispy Shoestring French Fries","allergens":[]},{"name":"American Cheese","allergens":["milk"]},{"name":"Cheddar Cheese","allergens":["milk"]},{"name":"Green Leaf Lettuce","allergens":[]},{"name":"Sliced Onions","allergens":[]},{"name":"Sliced Tomatoes","allergens":[]},{"name":"Dill Pickle Slices","allergens":[]},{"name":"Bacon Pieces","allergens":[]},{"name":"Deli Ham","allergens":[]},{"name":"Egg Whites","allergens":["eggs"]},{"name":"Eggs","allergens":[]},{"name":"Shredded Cheddar Cheese","allergens":["milk"]},{"name":"Baby Spinach","allergens":[]},{"name":"Diced Tomatoes","allergens":[]},{"name":"Sauteed Onions","allergens":[]},{"name":"Sauteed Red & Green Peppers","allergens":[]},{"name":"Sliced Mushrooms","allergens":[]},{"name":"Cilantro-Lime Barley","allergens":[]},{"name":"Red Beans","allergens":["milk","soy"]},{"name":"Orange Spiced Carrots","allergens":[]},{"name":"Zucchini & Yellow Squash Saute","allergens":[]},{"name":"Seasoned Steamed Green Beans","allergens":[]}]},{"name":"Lunch","food":[{"name":"Vegetable Bean Soup","allergens":[]},{"name":"Nonfat Greek Yogurt","allergens":[]},{"name":"Nonfat Strawberry Yogurt","allergens":[]},{"name":"Nonfat Vanilla Yogurt","allergens":[]},{"name":"Granola","allergens":["soy"]},{"name":"Honey Granola","allergens":["milk","soy"]},{"name":"Blueberries","allergens":[]},{"name":"Diced Mango","allergens":[]}]},{"name":"Dinner","food":[{"name":"Chicken & Shrimp Creole","allergens":["milk","shellfish","wheat"]},{"name":"Spicy Vegetable Gumbo","allergens":[]},{"name":"Seasoned Rice","allergens":[]},{"name":"Seasoned Green Peas & Mushrooms","allergens":["milk","soy"]},{"name":"Vegetable Bean Soup","allergens":[]},{"name":"Roasted Herbed Turkey Breast","allergens":[]},{"name":"Yellow Jasmine Rice","allergens":[]},{"name":"Roasted Cauliflower","allergens":[]},{"name":"Classic Cheese Pizza","allergens":["milk","wheat"]},{"name":"Meatball Pizza","allergens":["milk","soy","wheat"]},{"name":"Pepperoni Pizza","allergens":["milk","wheat"]},{"name":"Pizza Sauce","allergens":[]},{"name":"Loaded Philly Tots","allergens":["eggs","fish","milk","soy"]},{"name":"Gardenburger Black Bean Burger","allergens":["soy","wheat"]},{"name":"American Cheese","allergens":["milk"]},{"name":"Cheddar Cheese","allergens":["milk"]},{"name":"Green Leaf Lettuce","allergens":[]},{"name":"Sliced Onions","allergens":[]},{"name":"Sliced Tomatoes","allergens":[]},{"name":"Dill Pickle Slices","allergens":[]},{"name":"Brown Rice","allergens":[]},{"name":"Quinoa","allergens":[]},{"name":"Southwest Black Beans","allergens":[]},{"name":"Seasoned Steamed Green Beans","allergens":[]},{"name":"Steamed Sugar Snap Peas","allergens":[]},{"name":"Nonfat Greek Yogurt","allergens":[]},{"name":"Nonfat Strawberry Yogurt","allergens":[]},{"name":"Nonfat Vanilla Yogurt","allergens":[]},{"name":"Granola","allergens":["soy"]},{"name":"Honey Granola","allergens":["milk","soy"]},{"name":"Blueberries","allergens":[]},{"name":"Diced Mango","allergens":[]}]}]}]
+
+const { last_updated, data } = await fetch('https://hoos-menu.herokuapp.com/').then(r => r.json())
+
+console.log(data)
+
+TITLE.innerHTML = '<h1>Hoo Menu</h1>'
+/*
+const a = await fetch('https://hoos-menu.herokuapp.com/').then(r => r.json())
+console.log(a)*/
+
+// display_meal :: (food -> boolean) -> meal -> string
+/*  meal :: { name, food :: [food] }
+function(fil) {
+	return function(meal) {
+		returns string (that uses filter, and meal)
+	}
+}
+
+function(fil, meal) {
+  	returns string (that uses filter, and meal)
+}
+*/
+const display_meal = (fil, { name, food }) => food.filter(fil).map(({ name, allergens }) => `
 	<div class='food${allergens.length ? ' has-allergens': '' }'>
 		<span>${name}</span>
 		<span class=allergens>${allergens}</span>
@@ -19,47 +52,119 @@ const display_meal = ({ name, food }) => fil => food.filter(fil).map(({ name, al
 `).join('')
 
 // generate initial columns;
-document.body.innerHTML = data.map(({ name, meals }) => `
+COLUMNS.innerHTML = data.map(({ name: hall_name, meals }) => `
 	<div class=hall>
-		<h1>${name}</h1>
-		<div>switch meal stuff here</div>
-		${meals.map(display_meal)}
+		<h1>${hall_name}</h1>
+		<select id='${hall_name}-mealselect'>
+			${meals.map(({ name: meal_name }, i) => `
+				<option value=${i}>${meal_name}</option>
+			`).join('')}
+		</select>
+		<div class=foods id='${hall_name}-meals'>
+			${meals.length ? display_meal(() => true, meals[0]) : ''}
+		</div>
 	</div>
 `).join('')
 
-const generate_html = filter => data.map(({ name, meals }) => `
-	<div class=hall>
-		<h1>${name}</h1>
-		<div>switch meal stuff here</div>
-		${display_meal(meals[0])(filter)}
-	</div>
-`).join('')
 
-// interace to geenrate the filter function to (re)generate html -->
+ALLERGENS.innerHTML =  `
+    <div>
+        <input type="checkbox" id="soy">
+        <label for="soy">Soy</label>
+        <input type="checkbox" id="eggs">
+        <label for="egg">Egg</label>
+        <input type="checkbox" id="fish">
+        <label for="fish">Fish</label>
+        <input type="checkbox" id="shellfish">
+        <label for="shellfish">Shellfish</label>
+        <input type="checkbox" id="wheat">
+        <label for="wheat">Wheat</label>
+        <input type="checkbox" id="peanut">
+        <label for="peanut">Peanut</label>
+        <input type="checkbox" id="milk">
+        <label for="milk">Milk</label>
+        <input type="checkbox" id="treenuts">
+        <label for="treenuts">Tree Nuts</label>
+    </div>
+`
 
-const meal_select = ''
+let thefilter = () => true
+
+// { allergen string: checkbox div }
+// { milk: <checkbox id=milk> }
+const checkboxes_map = Object.fromEntries(
+	[...ALLERGENS.querySelectorAll('input')]
+		.map(checkbox_dom => [checkbox_dom.getAttribute('id'), checkbox_dom])
+)
 
 
+console.log([...ALLERGENS.querySelectorAll('input')])
+console.log(checkboxes_map)
 
-const allergen_select = null
+allergens.addEventListener('click', e => {
+
+	// makes new thefilter that
+	//   return false if the food contains any
+	//   allergens that are currently checked
+	console.log('abc')
+	thefilter = ({ allergens }) => { // ['milk', 'wheat']
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
+		// return allergens.some(milk => is the milk checkbox checked)
+		console.log(allergens)
+		if (allergens.some(allergen => checkboxes_map[allergen].checked))
+			return false
+		return true
+	//return false
+	//return allergens.path[0].checked == false
+	}
+
+	// whether the allergens something
+	// update all the columns
+	data.forEach(hall => {
+		//const hall = data.find(({name}) => name === hall_name)
+		const hall_name = hall.name
+
+		const mealselector = document.querySelector(`#${hall_name}-mealselect`)
+		const mealdisplay = document.querySelector(`#${hall_name}-meals`)
+
+		if (hall.meals.length === 0) return
 
 
-/* Meal Select HTML; only one meal can be chosen at a time; dropdown
-	<div class=dropdown>
-        <button class=dropbtn></button>
-        <div class=dropdown-content>
-          <a class=breakfastlabel onClick=mealchange("breakfast")>Breakfast</a>
-          <a class=breakfastlabel onClick=mealchange("lunch")>Lunch</a>
-          <a class=breakfastlabel onClick=mealchange("dinner")>Dinner</a>
-          <a class=lunchlabel onClick=>Lunch</a>
-          <a class=dinnerlabel>Dinner</a>
-        </div>
-      </div>
+		mealdisplay.innerHTML = display_meal(thefilter, hall.meals[mealselector.value])
+	})
+	//console.log(e.path[0].checked)
+})
 
+/*
+when you detect checkbox change
+	then make new filter that filters based on all of the checkboxes
+	then redisplay all three columns
 */
-function mealchange(meal){
-	if(meal == "breakfast")
-}
+
+/*
+  data.forEach(hall => {
+    const hall_name = hall.name
+
+    const mealselector = document.querySelector(`#${hall_name}-mealselect`)
+    const mealdisplay = document.querySelector(`#${hall_name}-meals`)
+
+    mealdisplay.innerHTML = display_meal(thefilter, hall.meals[mealselector.value])
+  })
+*/
+
+data.map(hall => hall.name).forEach((hall_name, i) => {
+	const hall = data.find(({name}) => name === hall_name)
+
+	const mealselector = document.querySelector(`#${hall_name}-mealselect`)
+	const mealdisplay = document.querySelector(`#${hall_name}-meals`)
+
+	mealselector.addEventListener('change', e => {
+		// mealselector.value is probably string and index should be int
+		// but doesnt rlly matter probably
+		mealdisplay.innerHTML = display_meal(thefilter, hall.meals[mealselector.value])
+	})
+})
+
 /* Allergen Select HTML
     <div>
 	  <input type="checkbox" id="soy">
@@ -81,12 +186,16 @@ function mealchange(meal){
 	<\div>
 */
 
-generate_html(({ allergens }) => allergens.includes('milk'))
-</script>
+
+
+})();</script>
 
 
 <style>
-body { display: flex; justify-content: space-evenly }
+#columns
+	{ display: flex
+	; justify-content: space-evenly
+}
 .hall
 	{ width: 16em
 	; display: flex
