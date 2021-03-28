@@ -1,0 +1,134 @@
+<body>
+	<div id=title></div>
+	<div id=allergens class=allerbox></div>
+	<div id=columns></div>
+</body>
+
+<script>;(async () => {
+const COLUMNS = document.querySelector('#columns')
+const TITLE = document.querySelector('#title')
+const ALLERGENS = document.querySelector('#allergens')
+
+const { last_updated, data } = await fetch('https://hoos-menu.herokuapp.com/').then(r => r.json())
+
+const display_meal = (fil, meal) => meal == null ? 'dining hall closed!' : meal.food.filter(fil).map(({ name, allergens }) => `
+	<div class='food${allergens.length ? ' has-allergens': '' }'>
+		<span>${name}</span>
+		<span class=allergens>${allergens.join(', ')}</span>
+	</div>
+`).join('')
+
+/*********************************/
+/** generate initial html stuff **/
+/*********************************/
+
+const names = {"runk": "Runk", "ohill": "O'Hill", "newcomb": "Newcomb"}
+
+const lu = new Date(last_updated)
+const lu_str = `${lu.getMonth() + 1}/${lu.getDate()} ${lu.getHours()}:${lu.getMinutes().toString().padStart(2, '0')}`
+TITLE.innerHTML = `<h1 class=title>Hoo's Menu</h1><h2 class=title>(last updated ${lu_str})</h2>`
+
+ALLERGENS.innerHTML = ['eggs', 'soy', 'wheat', 'milk', 'fish', 'shellfish', 'peanuts', 'treenuts']
+	.map(alg => `<div class=achoo><input type=checkbox id=${alg}><label for=${alg}>${alg[0].toUpperCase() + alg.slice(1)}</label></div>`)
+	.join('')
+
+// names.hall_name       names['hall_name']
+
+COLUMNS.innerHTML = data.map(({ name: hall_name, meals }) => `
+	<div class=hall>
+		<h1>${names[hall_name]}</h1>
+		<select id='${hall_name}-mealselect'>
+			${meals.map(({ name: meal_name }, i) => `
+				<option value=${i}>${meal_name}</option>
+			`).join('')}
+		</select>
+		<div class=foods id='${hall_name}-meals'></div>
+	</div>
+`).join('')
+
+// { allergen string: checkbox div }
+// { milk: <checkbox id=milk> }
+const checkboxes_map = Object.fromEntries(
+	[...ALLERGENS.querySelectorAll('input')]
+		.map(checkbox_dom => [checkbox_dom.getAttribute('id'), checkbox_dom])
+)
+
+// return false if the food contains any
+// allergens that are currently checked
+const thefilter = ({ allergens }) => !allergens.some(allergen => checkboxes_map[allergen].checked)
+
+const updater = hall => {
+	const mealselector = document.querySelector(`#${hall.name}-mealselect`)
+	const mealdisplay = document.querySelector(`#${hall.name}-meals`)
+
+	const update = () => {
+		//if (hall.meals.length === 0) return
+		mealdisplay.innerHTML = display_meal(thefilter, hall.meals[mealselector.value])
+	}
+
+	// trigger update when mealselector changes
+	mealselector.addEventListener('change', update)
+	update()
+
+	return update
+}
+const hall_updaters = Object.fromEntries(data.map(hall => [hall.name, updater(hall)]))
+
+allergens.addEventListener('click', e => data.forEach(hall => hall_updaters[hall.name]()))
+
+})();</script>
+
+
+<style>
+#columns
+	{ display: flex
+	; justify-content: space-evenly
+}
+.hall
+	{ width: 16em
+	; display: flex
+	; flex-direction: column
+	}
+.food
+	{ display: flex
+	; justify-content: space-between
+	; align-items: center
+	; padding: 0.1em
+	}
+.has-allergens
+	{ background-color: #fcc
+	}
+select
+	{ margin: 1em 0 1em 0
+	}
+.allergens
+	{ font-size: 50%
+	}
+#allergens
+	{ margin: auto
+	; display: grid
+	; grid-template-columns: 1fr 1fr 1fr 1fr
+	; grid-gap: 0.2em
+	; padding: 1em
+	; border: 1px solid
+	; width: 24em
+	}
+.achoo
+	{ display: flex
+	; justify-content: flex-start
+	}
+#checkboxes
+	{ margin: auto
+	; width: 50%
+	}
+#title, #columns
+	{ margin: 1em
+	}
+h1, h2 { margin: 0 }
+#title
+	{ text-align:center
+	; padding: 1em
+	; color: rgb(229, 114, 0)
+	; background-color: rgb(35, 45, 75)
+	}
+</style>
