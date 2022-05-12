@@ -8,11 +8,6 @@ const my_fetch = url => fetch('https://www.cs.virginia.edu/~jh7qbe/test.php?url=
 
 const ohill_dateuri = date => encodeURIComponent(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`)
 
-// fetch dom for specific period (mealtime) and date
-const on_period_dom = locationId => date => period => my_fetch(`https://virginia.campusdish.com/api/menus/GetMenu?locationId=${locationId}&mode=Daily&periodId=${period}&date=${ohill_dateuri(date)}`)
-	.then(r => r.text())
-	.then(to_dom)
-
 // gets allergens from dom
 // dom => [string]
 const on_menuitem_allergens = dom => Object.entries(dom.attributes)
@@ -21,37 +16,20 @@ const on_menuitem_allergens = dom => Object.entries(dom.attributes)
 	.filter(x => x)
 	.map(match => match[1])
 
-// gets [station] from dom
-// dom => [{ name: 'station name', items: { name: 'item name', allergens: [string] } }]
-const on_period_to_dj = dom => {
-	const stations = [...dom.querySelectorAll('.menu__station')].map(dom => {
-		const name = dom.querySelector('.station-header-title').textContent
-		const items = [...dom.querySelectorAll('.menu__item')]
+// fetch scrapes stations for specific period (mealtime) and date
+// stringable => Date => stringable => [station]
+const get_mark = locationId => date => async period => {
+	const mark = await my_fetch(`https://virginia.campusdish.com/api/menu/GetMenus?locationId=${locationId}&mode=Daily&periodId=${period}&date=${ohill_dateuri(date)}`)
+		.then(r => r.json())
 
-		return { name, items: items.map(dom => {
-			const name_container = dom.querySelector('.item__name')
-			const name = name_container.textContent.trim()
-			//	? name_container.textContent.trim()
-			//	: name_container.querySelector('a').textContent
-			const productId = dom.getAttribute('data-menu-product-id')
+	const stations = Object.fromEntries(
+		mark.Menu.MenuStations.map(({ StationId, Name }) => [ StationId, { name: Name, items: [] } ])
+	)
 
-			const desc = (dom.querySelector('.item__content') || {}).textContent || null
+	for (const p of mark.Menu.MenuProducts)
+		stations[p.StationId].items.push({ name: p.Product.MarketingName })
 
-			const tags = [...dom.querySelectorAll('.item__details li img')].map(x => x.getAttribute('alt'))
-
-			const allergens = on_menuitem_allergens(dom)
-
-			return { name, allergens//, tags, desc, productId }
-			}
-		})}
-	})
-
-	return stations
-		.filter(({ name }) => name !== 'Deli' && name !== 'Salad Bar')
-		//.map(s => s.items)
-		//.flat()
-		//.map(s => s.name)
-		//.join('\n')
+	return Object.values(stations).filter(({ items }) => items.length > 0)
 }
 
 const on_day_menu = ({ locationId, locString }) => async date => {
@@ -59,19 +37,19 @@ const on_day_menu = ({ locationId, locString }) => async date => {
 		.then(r => r.text())
 		.then(t => {
 			// no error checking oop!
-			const js = t.match(/menus.periods =(.+);/)[1] // probably computer generated so likely will never change
+			const js = t.match(/periods: (\[.*\])/)[1] // probably computer generated so likely will never change
 			return eval(js) // bad
 		})
 
 	// actually works without await but um idk
 	return await Promise.all(
-		periods.map(async ({ name, periodId }) => ({ name, stations: await on_period_dom(locationId)(date)(periodId).then(on_period_to_dj) }))
+		periods.map(async ({ name, periodId }) => ({ name, stations: await get_mark(locationId)(date)(periodId) }))
 	)
 }
 
 const get_ohill = date => Promise.all(
-	[ { locationId: 704, locString: 'FreshFoodCompany', name: 'newcomb' }
-	, { locationId: 695, locString: 'ObservatoryHillDiningRoom', name: 'ohill' }
+	[ { locationId: 695, locString: 'ObservatoryHillDiningRoom', name: 'ohill' }
+	, { locationId: 704, locString: 'FreshFoodCompany', name: 'newcomb' }
 	].map(async info => ({ name: info.name, meals: await on_day_menu(info)(date) }))
 )
 
