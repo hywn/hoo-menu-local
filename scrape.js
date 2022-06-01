@@ -1,5 +1,3 @@
-//import { DOMParser } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts'
-
 const my_DP = new DOMParser()
 const to_dom = html_text =>
 	new DOMParser().parseFromString(html_text, 'text/html')
@@ -7,14 +5,6 @@ const to_dom = html_text =>
 const my_fetch = url => fetch('https://www.cs.virginia.edu/~jh7qbe/test.php?url=' + encodeURIComponent(url))
 
 const ohill_dateuri = date => encodeURIComponent(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`)
-
-// gets allergens from dom
-// dom => [string]
-const on_menuitem_allergens = dom => Object.entries(dom.attributes)
-	.filter(([k, v]) => v === 'True')
-	.map(([k, v]) => k.match(/^contains(.+)/i))
-	.filter(x => x)
-	.map(match => match[1])
 
 // fetch scrapes stations for specific period (mealtime) and date
 // stringable => Date => stringable => [station]
