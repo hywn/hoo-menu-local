@@ -1,3 +1,5 @@
+/// NOTE: if one thing produces garbage data the others fail as well
+
 const my_DP = new DOMParser()
 const to_dom = html_text =>
 	new DOMParser().parseFromString(html_text, 'text/html')
@@ -45,7 +47,7 @@ const get_ohill = date => Promise.all(
 
 const get_runk = async date => {
 
-	const html = await my_fetch(`https://dining.virginia.edu/locations/runk-dining-hall/?date=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
+	const html = await my_fetch(`https://harvesttableuva.com/locations/runk-dining-hall/?date=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
 		.then(r => r.text())
 	const dom = to_dom(html)
 
